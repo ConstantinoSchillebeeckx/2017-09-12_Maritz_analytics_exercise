@@ -14,17 +14,7 @@ IS_ANACONDA=$(shell python -c "import sys;t=str('anaconda' in sys.version.lower(
 
 ## Make Dataset (biom, mapping, etc)
 data:
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py Job number that defines OTU table
-	#get_mapping.py -s 81 -o data/raw/AS81_mapping.txt
-	#filter_samples_from_otu_table.py -i data/raw/otu.biom -o data/raw/otu_AS81.biom --sample_id_fp data/raw/AS81_mapping.txt
-
-## Generate PCOA files stored in data/pcoa
-pcoa:
-	bash /home/code_repo/bash/generate_pcoa.sh -o data/pcoa -r data/raw/rep_set.tre -t rdp_kau_taxonomy -b data/raw/otu.biom -m data/raw/ASXX_mapping.txt
-
-## Generate stats used in analysis
-stats:
-	for d in 4 7 14 21; do run_stat_suite.py data/raw/otu.biom data/raw/AS61_mapping.txt --grouping_col XXX --group1 XXX --group2 XXX --subset DaysIn,$$d --repset data/raw/rep_set.fna --out data/interim/XXX_d$$d.xlsx; done
+	curl https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD > data/raw/dump.csv
 
 ## Make notebook TOC
 notebook_toc:

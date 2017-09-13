@@ -69,9 +69,5 @@ target/
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-# exclude raw & interim data from source control by default
-/data/raw
-/data/interim
-
 # exclude site (will be pushed to gh-pages branch)
 site/
